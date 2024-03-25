@@ -32,6 +32,19 @@ public class VenueHireSystem {
 
   public void createVenue(String venueName, String venueCode, String capacityInputAsString, String hireFeeInputAsString)
   {
+
+    double hireFeeMustBeANumber;
+    try
+    {
+      hireFeeMustBeANumber = Double.parseDouble(hireFeeInputAsString);
+    }
+    catch (NumberFormatException e)
+    {
+      System.out.println("Venue not created: hire fee must be a number.");
+      return;
+    }
+
+    
     if (venueName == null || venueName.trim().isEmpty()) {
       System.out.println(MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.getMessage());
       return;
