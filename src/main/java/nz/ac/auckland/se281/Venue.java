@@ -21,7 +21,7 @@ public class Venue {
     this.venueNameProperty = venueName;
     this.venueCodeProperty = venueCode;
     this.capacityProperty = Integer.parseInt(capacityInput);
-    this.hireFeeProperty = Double.parseDouble(hireFeeInput);
+    this.hireFeeProperty = Integer.parseInt(hireFeeInput);
   }
 
   public String getVenueName() {
