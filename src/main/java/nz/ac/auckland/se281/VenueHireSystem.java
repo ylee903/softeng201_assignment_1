@@ -67,43 +67,54 @@ public class VenueHireSystem {
 
   public void createVenue(String venueName, String venueCode, String capacityInputAsString, String hireFeeInputAsString)
   {
-
-
-    // Check if the venue code already exists
-    for (Venue venue : venuesActualListOfVenues) {
-      if (venue.getVenueCode().equals(venueCode)) {
-        System.out.printf(MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.getMessage(), venueCode, venue.getVenueName());
+    int capacityInputAsInterger;
+    int hireFeeAsInterger;
+        // Try capacity and hire fee as an integers
+        try{capacityInputAsInterger = Integer.parseInt(capacityInputAsString);}
+        catch (NumberFormatException e)
+        {
+          System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("capacity", " an"));
+          return;
+        }
+  
+      try
+      {hireFeeAsInterger = Integer.parseInt(hireFeeInputAsString);}
+      catch(NumberFormatException e)
+      {
+        System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("hire fee", ""));
         return;
       }
-    }
+  
+      // Check if capacity and hire fee are positive values
+      if(capacityInputAsInterger <= 0)
+      {
+        System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("capacity", " a positive"));
+        return;
+      }
+      if(hireFeeAsInterger <= 0)
+      {
+        System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("hire fee", " a positive"));
+        return;
+      }
 
-    try
-    {
-      Double.parseDouble(hireFeeInputAsString);
-    }
-    catch (NumberFormatException e)
-    {
-      System.out.println("Venue not created: hire fee must be a number.");
-      return;
-    }
+      // Check if the venue code already exists
+      for (Venue venue : venuesActualListOfVenues) {
+        if (venue.getVenueCode().equals(venueCode)) {
+          System.out.printf(MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.getMessage(), venueCode, venue.getVenueName());
+          return;
+        }
+      }
 
-
+    // Check if the venue name is empty
     if (venueName == null || venueName.trim().isEmpty()) {
       System.out.println(MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.getMessage());
       return;
     }
 
 
-    int capacity;
-    capacity = Integer.parseInt(capacityInputAsString);
-    if (capacity < 1) {
-      System.out.println("Venue not created: capacity must be a positive number.");
-      return;
-    }
-
     Venue newVenueInstance /*this is the "variable name" or more correctly, the name of the object or instance*/ 
      = 
-     new Venue (venueName, venueCode, capacityInputAsString, hireFeeInputAsString); 
+     new Venue (venueName, venueCode, capacityInputAsInterger, hireFeeAsInterger); 
     /* on the right hand sign of the equation, are creating an instance of the object with the properties/fields/ attributes from the "Venue.java" class file, the object has the respective fields filled in from 
    * the matching parameter names passed in the method "createVenue(String venueName, String venueCode, String capacityInputAsString, String hireFeeInputAsString)"
     * 

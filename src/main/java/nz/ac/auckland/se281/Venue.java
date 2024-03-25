@@ -17,11 +17,11 @@ public class Venue {
  * @param hireFeeInput the hire fee of the venue as a string
  */
 
-  public Venue(String venueName, String venueCode, String capacityInput, String hireFeeInput) {
+  public Venue(String venueName, String venueCode, int capacityInput, int hireFeeInput) {
     this.venueNameProperty = venueName;
     this.venueCodeProperty = venueCode;
-    this.capacityProperty = Integer.parseInt(capacityInput);
-    this.hireFeeProperty = Integer.parseInt(hireFeeInput);
+    this.capacityProperty = capacityInput;
+    this.hireFeeProperty = hireFeeInput;
   }
 
   public String getVenueName() {
