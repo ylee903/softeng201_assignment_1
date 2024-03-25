@@ -7,14 +7,14 @@ import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
 
-  private List<Venue> venues;
+  private List<Venue> venuesActualListOfVenues;
 
   public VenueHireSystem() {
-    this.venues = new ArrayList<>();
+    this.venuesActualListOfVenues = new ArrayList<>();
   }
 
   public void printVenues() {
-    if (venues.isEmpty()) {
+    if (venuesActualListOfVenues.isEmpty()) {
       System.out.println(MessageCli.NO_VENUES.getMessage());
     } else {
       // code to print out the venues
@@ -24,7 +24,7 @@ public class VenueHireSystem {
   public void createVenue(
       String venueName, String venueCode, String capacityInput, String hireFeeInput) {
     Venue newVenue = new Venue(venueName, venueCode, capacityInput, hireFeeInput);
-    venues.add(newVenue);
+    venuesActualListOfVenues.add(newVenue);
   }
 
   public void setSystemDate(String dateInput) {
@@ -59,3 +59,25 @@ public class VenueHireSystem {
     // TODO implement this method
   }
 }
+
+/*
+ *
+ *
+ * Sure, let's walk through the process of creating a venue in your system.
+
+Command Input: The command CREATE_VENUE "testing hall" TH 5 100 is entered. This command is a directive to the system to create a new venue with the specified parameters.
+
+Command Parsing: The system parses the command and extracts the parameters. In this case, "testing hall" is the name of the venue, "TH" is the venue code, "5" is the capacity of the venue, and "100" is the hire fee for the venue.
+
+Method Invocation: The system then calls the createVenue method in the VenueHireSystem class, passing in the extracted parameters. The line of code that does this would look something like this: venueHireSystem.createVenue("testing hall", "TH", "5", "100");
+
+Venue Creation: Inside the createVenue method, a new Venue object is created with the given parameters. This is done with the line Venue newVenue = new Venue(venueName, venueCode, capacityInput, hireFeeInput);. The Venue constructor converts the capacity and hire fee from String to int and double respectively, and assigns all these values to the new Venue object.
+
+Venue Addition: The new Venue object is then added to the venues list in the VenueHireSystem class. This is done with the line venues.add(newVenue);. This means that the venue is now stored in the system and can be accessed later.
+
+Command Completion: At this point, the CREATE_VENUE command is complete. The new venue "testing hall" has been created and stored in the system.
+
+Each of these steps is necessary to ensure that the venue is correctly created and stored in the system. The command parsing is necessary to extract the parameters from the command, the Venue object is necessary to store the venue data, and the venues list is necessary to keep track of all the venues in the system.
+ *
+ *
+ */
