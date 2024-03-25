@@ -9,22 +9,28 @@ public class VenueHireSystem {
 
   private List<Venue> venuesActualListOfVenues;
 
-  public VenueHireSystem() {
+  public VenueHireSystem()
+  {
     this.venuesActualListOfVenues = new ArrayList<>();
   }
 
-  public void printVenues() {
-    if (venuesActualListOfVenues.isEmpty()) {
+  public void printVenues()
+  {
+    if (venuesActualListOfVenues.isEmpty())
+    {
       System.out.println(MessageCli.NO_VENUES.getMessage());
-    } else {
+    }
+    else
+    {
       // code to print out the venues
     }
   }
 
-  public void createVenue(
-      String venueName, String venueCode, String capacityInput, String hireFeeInput) {
-    Venue newVenue = new Venue(venueName, venueCode, capacityInput, hireFeeInput);
-    venuesActualListOfVenues.add(newVenue);
+  public void createVenue(String venueName, String venueCode, String capacityInputAsString, String hireFeeInputAsString)
+  { Venue newVenueInstance /*this is the "variable name" or more correctly, the name of the object or instance*/ 
+  = 
+  new Venue /*create an object of the class "Venue" */(venueName, venueCode, capacityInputAsString, hireFeeInputAsString);
+    venuesActualListOfVenues.add(newVenueInstance);
   }
 
   public void setSystemDate(String dateInput) {

@@ -1,31 +1,42 @@
 package nz.ac.auckland.se281;
 
 public class Venue {
-  private String venueName;
-  private String venueCode;
-  private int capacity;
-  private double hireFee;
+  private String venueNameProperty;
+  private String venueCodeProperty;
+  private int capacityProperty;
+  private double hireFeeProperty;
+
+
+
+/**
+ * Constructs a new Venue with the given name, code, capacity, and hire fee.
+ *
+ * @param venueName the name of the venue
+ * @param venueCode the code of the venue
+ * @param capacityInput the capacity of the venue as a string
+ * @param hireFeeInput the hire fee of the venue as a string
+ */
 
   public Venue(String venueName, String venueCode, String capacityInput, String hireFeeInput) {
-    this.venueName = venueName;
-    this.venueCode = venueCode;
-    this.capacity = Integer.parseInt(capacityInput);
-    this.hireFee = Double.parseDouble(hireFeeInput);
+    this.venueNameProperty = venueName;
+    this.venueCodeProperty = venueCode;
+    this.capacityProperty = Integer.parseInt(capacityInput);
+    this.hireFeeProperty = Double.parseDouble(hireFeeInput);
   }
 
   public String getVenueName() {
-    return venueName;
+    return venueNameProperty;
   }
 
   public String getVenueCode() {
-    return venueCode;
+    return venueCodeProperty;
   }
 
   public int getCapacity() {
-    return capacity;
+    return capacityProperty;
   }
 
   public double getHireFee() {
-    return hireFee;
+    return hireFeeProperty;
   }
 }
