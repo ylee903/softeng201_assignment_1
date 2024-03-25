@@ -32,15 +32,38 @@ public class VenueHireSystem {
     else if (venuesActualListOfVenues.size() > 1){
       System.out.println("There are " + venuesActualListOfVenues.size() + " venues in the system:");
     }
+      
+    // This prints the details of each venue in the list
+    for (Venue venue : venuesActualListOfVenues)
+    {
+      String hireFee /*declare a new string "hireFee" */ = String.format/*format the provided arguments and string*/("%.0f" /*%=placeholder for variable to be formated, .0=no nigits after decimal, f=format is a decimal number   */, venue.getHireFee());
+      System.out.println(venue.getVenueName() + " (" + venue.getVenueCode() + ") - " + venue.getCapacity() + " people - $" + hireFee + " base hire fee");
+    }
 
+    
+    
+
+    /*
     else
     {
       // code to print out the venues
     }
+    */
   }
 
   public void createVenue(String venueName, String venueCode, String capacityInputAsString, String hireFeeInputAsString)
   {
+
+
+    // Check if the venue code already exists
+    for (Venue venue : venuesActualListOfVenues)
+    {
+      if (venue.getVenueCode().equals(venueCode))
+      {
+        System.out.printf(MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.getMessage(), venueCode, venue.getVenueName());
+        return;
+      }
+    }
 
     try
     {
