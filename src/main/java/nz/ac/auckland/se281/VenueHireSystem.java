@@ -36,9 +36,11 @@ public class VenueHireSystem {
   new Venue (venueName, venueCode, capacityInputAsString, hireFeeInputAsString); 
   /* on the right hand sign of the equation, are creating an instance of the object with the properties/fields/ attributes from the "Venue.java" class file, the object has the respective fields filled in from 
    * the matching parameter names passed in the method "createVenue(String venueName, String venueCode, String capacityInputAsString, String hireFeeInputAsString)"
-   * on the left hand side, we assign a variable name to this instance or object, so that whilst inide of this method, we can actually assign add it to "venuesActualListOfVenues", we could create an instace without it 
-   * being assigned a variable (more accurately instance/object name (pleaes tell me which one is even more correct)), but this would be totally pointlessm,
-   * since we would not be able to assignh it to venuesActualListOfVenues (which is created by the Venue.java class file, and is a list of all the venues created in the system.
+   * 
+   * on the left hand side, we assign a variable name to this instance or object, so that whilst inide of this method, we can actually assign add it to "venuesActualListOfVenues",
+   * we could create an instace without the instance being assigned a variable (more accurately instance/object name (pleaes tell me which one is even more correct)),
+   * but this would be totally pointless, since we would not be able to assignh it to venuesActualListOfVenues (which is created by the Venue.java class file,
+   * and is a list of all the venues created in the system.
    */
   venuesActualListOfVenues.add(newVenueInstance);
   }
