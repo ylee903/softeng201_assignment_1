@@ -9,53 +9,53 @@ public class VenueHireSystem {
 
   private List<Venue> venuesActualListOfVenues;
 
-  public VenueHireSystem()
-  {
+  public VenueHireSystem() {
     this.venuesActualListOfVenues = new ArrayList<>();
   }
 
-  public void printVenues()
-  {
-    if (venuesActualListOfVenues.isEmpty())
-    {
-      System.out.println(MessageCli.NO_VENUES.getMessage()); 
+  public void printVenues() {
+    if (venuesActualListOfVenues.isEmpty()) {
+      System.out.println(MessageCli.NO_VENUES.getMessage());
       /* Print using "System.out.println()", which is similar to "print()" in some other languages. MessageCli is likely the name of an enumeration or class.
       NO_VENUES is likely a constant (an enum value or static final variable) defined in the MessageCli enumeration or class.
       getMessage() is a method that retrieves the message associated with the NO_VENUES constant. This method is likely defined in the MessageCli enumeration or class.
       */
-    }
-
-    else if (venuesActualListOfVenues.size() == 1)
-    {
+    } else if (venuesActualListOfVenues.size() == 1) {
       System.out.println("There is one venue in the system:");
-    }
-    else if (venuesActualListOfVenues.size() < 10)
-    {
-      String[] numbersInWords = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-      System.out.println("There are " + numbersInWords[venuesActualListOfVenues.size()] + " venues in the system:");
-    } 
-    else 
-    {
+    } else if (venuesActualListOfVenues.size() < 10) {
+      String[] numbersInWords = {
+        "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+      };
+      System.out.println(
+          "There are "
+              + numbersInWords[venuesActualListOfVenues.size()]
+              + " venues in the system:");
+    } else {
       System.out.println("There are " + venuesActualListOfVenues.size() + " venues in the system:");
     }
-      
 
     // This prints the details of each venue in the list
-    for (Venue venue : venuesActualListOfVenues)
-    {
-      String hireFee /*declare a new string "hireFee" */ = String.format/*format the provided arguments and string*/("%.0f" /*%=placeholder for variable to be formated, .0=no nigits after decimal, f=format is a decimal number   */, venue.getHireFee());
-      String output =    venue.getVenueName() + " (" + venue.getVenueCode() + ") - " + venue.getCapacity() + " people - $" + hireFee + " base hire fee";
-      
+    for (Venue venue : venuesActualListOfVenues) {
+      String hireFee /*declare a new string "hireFee" */ =
+          String.format /*format the provided arguments and string*/(
+              "%.0f" /*%=placeholder for variable to be formated, .0=no nigits after decimal, f=format is a decimal number   */,
+              venue.getHireFee());
+      String output =
+          venue.getVenueName()
+              + " ("
+              + venue.getVenueCode()
+              + ") - "
+              + venue.getCapacity()
+              + " people - $"
+              + hireFee
+              + " base hire fee";
+
       // Add an asterisk if there is less than 10 entries in list
-      if (venuesActualListOfVenues.size() < 10)
-      {
+      if (venuesActualListOfVenues.size() < 10) {
         output = "* " + output;
       }
       System.out.println(output);
     }
-
-    
-    
 
     /*
     else
@@ -65,45 +65,47 @@ public class VenueHireSystem {
     */
   }
 
-  public void createVenue(String venueName, String venueCode, String capacityInputAsString, String hireFeeInputAsString)
-  {
+  public void createVenue(
+      String venueName,
+      String venueCode,
+      String capacityInputAsString,
+      String hireFeeInputAsString) {
     int capacityInputAsInterger;
     int hireFeeAsInterger;
-        // Try capacity and hire fee as an integers
-        try{capacityInputAsInterger = Integer.parseInt(capacityInputAsString);}
-        catch (NumberFormatException e)
-        {
-          System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("capacity", " an"));
-          return;
-        }
-  
-      try
-      {hireFeeAsInterger = Integer.parseInt(hireFeeInputAsString);}
-      catch(NumberFormatException e)
-      {
-        System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("hire fee", ""));
-        return;
-      }
-  
-      // Check if capacity and hire fee are positive values
-      if(capacityInputAsInterger <= 0)
-      {
-        System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("capacity", " a positive"));
-        return;
-      }
-      if(hireFeeAsInterger <= 0)
-      {
-        System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("hire fee", " a positive"));
-        return;
-      }
+    // Try capacity and hire fee as an integers
+    try {
+      capacityInputAsInterger = Integer.parseInt(capacityInputAsString);
+    } catch (NumberFormatException e) {
+      System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("capacity", " an"));
+      return;
+    }
+    try {
+      hireFeeAsInterger = Integer.parseInt(hireFeeInputAsString);
+    } catch (NumberFormatException e) {
+      System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("hire fee", ""));
+      return;
+    }
 
-      // Check if the venue code already exists
-      for (Venue venue : venuesActualListOfVenues) {
-        if (venue.getVenueCode().equals(venueCode)) {
-          System.out.printf(MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.getMessage(), venueCode, venue.getVenueName());
-          return;
-        }
+    // Check if capacity and hire fee are positive values
+    if (capacityInputAsInterger <= 0) {
+      System.out.println(
+          MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("capacity", " positive"));
+      return;
+    }
+    if (hireFeeAsInterger <= 0) {
+      System.out.println(
+          MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("hire fee", " positive"));
+      return;
+    }
+
+    // Check if the venue code already exists
+    for (Venue venue : venuesActualListOfVenues) {
+      if (venue.getVenueCode().equals(venueCode)) {
+        System.out.printf(
+            MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.getMessage(), venueCode, venue.getVenueName());
+        return;
       }
+    }
 
     // Check if the venue name is empty
     if (venueName == null || venueName.trim().isEmpty()) {
@@ -111,20 +113,18 @@ public class VenueHireSystem {
       return;
     }
 
-
-    Venue newVenueInstance /*this is the "variable name" or more correctly, the name of the object or instance*/ 
-     = 
-     new Venue (venueName, venueCode, capacityInputAsInterger, hireFeeAsInterger); 
-    /* on the right hand sign of the equation, are creating an instance of the object with the properties/fields/ attributes from the "Venue.java" class file, the object has the respective fields filled in from 
-   * the matching parameter names passed in the method "createVenue(String venueName, String venueCode, String capacityInputAsString, String hireFeeInputAsString)"
-    * 
-    * on the left hand side, we assign a variable name to this instance or object, so that whilst inide of this method, we can actually assign add it to "venuesActualListOfVenues",
-    * we could create an instace without the instance being assigned a variable (more accurately instance/object name (pleaes tell me which one is even more correct)),
-    * but this would be totally pointless, since we would not be able to assignh it to venuesActualListOfVenues (which is created by the Venue.java class file,     * and is a list of all the venues created in the system.
-    */
-   venuesActualListOfVenues.add(newVenueInstance);
-   System.out.printf(MessageCli.VENUE_SUCCESSFULLY_CREATED.getMessage(), venueName, venueCode);
-
+    Venue
+        newVenueInstance /*this is the "variable name" or more correctly, the name of the object or instance*/ =
+            new Venue(venueName, venueCode, capacityInputAsInterger, hireFeeAsInterger);
+    /* on the right hand sign of the equation, are creating an instance of the object with the properties/fields/ attributes from the "Venue.java" class file, the object has the respective fields filled in from
+     * the matching parameter names passed in the method "createVenue(String venueName, String venueCode, String capacityInputAsString, String hireFeeInputAsString)"
+     *
+     * on the left hand side, we assign a variable name to this instance or object, so that whilst inide of this method, we can actually assign add it to "venuesActualListOfVenues",
+     * we could create an instace without the instance being assigned a variable (more accurately instance/object name (pleaes tell me which one is even more correct)),
+     * but this would be totally pointless, since we would not be able to assignh it to venuesActualListOfVenues (which is created by the Venue.java class file,     * and is a list of all the venues created in the system.
+     */
+    venuesActualListOfVenues.add(newVenueInstance);
+    System.out.printf(MessageCli.VENUE_SUCCESSFULLY_CREATED.getMessage(), venueName, venueCode);
   }
 
   public void setSystemDate(String dateInput) {
