@@ -44,10 +44,9 @@ public class VenueHireSystem {
     for (Venue venue : venuesActualListOfVenues)
     {
       String hireFee /*declare a new string "hireFee" */ = String.format/*format the provided arguments and string*/("%.0f" /*%=placeholder for variable to be formated, .0=no nigits after decimal, f=format is a decimal number   */, venue.getHireFee());
-      System.out.println(venue.getVenueName() + " (" + venue.getVenueCode() + ") - " + venue.getCapacity() + " people - $" + hireFee + " base hire fee");
       String output =    venue.getVenueName() + " (" + venue.getVenueCode() + ") - " + venue.getCapacity() + " people - $" + hireFee + " base hire fee";
       
-      // Add an asterisk if there is exactly one venue in the list
+      // Add an asterisk if there is less than 10 entries in list
       if (venuesActualListOfVenues.size() < 10)
       {
         output = "* " + output;
