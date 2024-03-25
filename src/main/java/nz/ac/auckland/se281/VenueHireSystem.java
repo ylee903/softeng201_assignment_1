@@ -24,6 +24,15 @@ public class VenueHireSystem {
       getMessage() is a method that retrieves the message associated with the NO_VENUES constant. This method is likely defined in the MessageCli enumeration or class.
       */
     }
+
+    if (venuesActualListOfVenues.size() == 1)
+    {
+      System.out.println("There is one venue in the system:");
+    }
+    else if (venuesActualListOfVenues.size() > 1){
+      System.out.println("There are " + venuesActualListOfVenues.size() + " venues in the system:");
+    }
+
     else
     {
       // code to print out the venues
@@ -33,10 +42,9 @@ public class VenueHireSystem {
   public void createVenue(String venueName, String venueCode, String capacityInputAsString, String hireFeeInputAsString)
   {
 
-    double hireFeeMustBeANumber;
     try
     {
-      hireFeeMustBeANumber = Double.parseDouble(hireFeeInputAsString);
+      Double.parseDouble(hireFeeInputAsString);
     }
     catch (NumberFormatException e)
     {
@@ -44,7 +52,7 @@ public class VenueHireSystem {
       return;
     }
 
-    
+
     if (venueName == null || venueName.trim().isEmpty()) {
       System.out.println(MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.getMessage());
       return;
