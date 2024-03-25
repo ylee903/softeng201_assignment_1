@@ -43,6 +43,8 @@ public class VenueHireSystem {
    * and is a list of all the venues created in the system.
    */
   venuesActualListOfVenues.add(newVenueInstance);
+  System.out.println(String.format(MessageCli.VENUE_SUCCESSFULLY_CREATED.getMessage(), venueName, venueCode));
+
   }
 
   public void setSystemDate(String dateInput) {
