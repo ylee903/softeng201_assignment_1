@@ -38,6 +38,12 @@ public class VenueHireSystem {
     }
 
 
+    int capacity;
+    capacity = Integer.parseInt(capacityInputAsString);
+    if (capacity < 1) {
+      System.out.println("Venue not created: capacity must be a positive number.");
+      return;
+    }
 
     Venue newVenueInstance /*this is the "variable name" or more correctly, the name of the object or instance*/ 
      = 
