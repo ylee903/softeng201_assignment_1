@@ -19,9 +19,10 @@ public class VenueHireSystem {
     if (venuesActualListOfVenues.isEmpty())
     {
       System.out.println(MessageCli.NO_VENUES.getMessage()); 
-      /* print using "System.out.println()" which is the same as "print()", MessageCli is the name of enumeration/class file,
-      and NO_VENUES is the name enum in enumumeration file, getMessage() is the method that gets the message from the enum from the enumeration file and is defined in said enumeration file.
-    */
+      /* Print using "System.out.println()", which is similar to "print()" in some other languages. MessageCli is likely the name of an enumeration or class.
+      NO_VENUES is likely a constant (an enum value or static final variable) defined in the MessageCli enumeration or class.
+      getMessage() is a method that retrieves the message associated with the NO_VENUES constant. This method is likely defined in the MessageCli enumeration or class.
+      */
     }
     else
     {
