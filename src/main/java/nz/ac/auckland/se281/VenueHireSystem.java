@@ -8,6 +8,7 @@ public class VenueHireSystem {
   public VenueHireSystem() {}
 
   public void printVenues() {
+    MessageCli.NO_VENUES.printMessage();
     // TODO implement this method
   }
 
