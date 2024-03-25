@@ -25,14 +25,21 @@ public class VenueHireSystem {
       */
     }
 
-    if (venuesActualListOfVenues.size() == 1)
+    else if (venuesActualListOfVenues.size() == 1)
     {
       System.out.println("There is one venue in the system:");
     }
-    else if (venuesActualListOfVenues.size() > 1){
+    else if (venuesActualListOfVenues.size() < 10)
+    {
+      String[] numbersInWords = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+      System.out.println("There are " + numbersInWords[venuesActualListOfVenues.size()] + " venues in the system:");
+    } 
+    else 
+    {
       System.out.println("There are " + venuesActualListOfVenues.size() + " venues in the system:");
     }
       
+
     // This prints the details of each venue in the list
     for (Venue venue : venuesActualListOfVenues)
     {
@@ -41,7 +48,7 @@ public class VenueHireSystem {
       String output =    venue.getVenueName() + " (" + venue.getVenueCode() + ") - " + venue.getCapacity() + " people - $" + hireFee + " base hire fee";
       
       // Add an asterisk if there is exactly one venue in the list
-      if (venuesActualListOfVenues.size() == 1)
+      if (venuesActualListOfVenues.size() < 10)
       {
         output = "* " + output;
       }
