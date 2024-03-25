@@ -38,6 +38,14 @@ public class VenueHireSystem {
     {
       String hireFee /*declare a new string "hireFee" */ = String.format/*format the provided arguments and string*/("%.0f" /*%=placeholder for variable to be formated, .0=no nigits after decimal, f=format is a decimal number   */, venue.getHireFee());
       System.out.println(venue.getVenueName() + " (" + venue.getVenueCode() + ") - " + venue.getCapacity() + " people - $" + hireFee + " base hire fee");
+      String output =    venue.getVenueName() + " (" + venue.getVenueCode() + ") - " + venue.getCapacity() + " people - $" + hireFee + " base hire fee";
+      
+      // Add an asterisk if there is exactly one venue in the list
+      if (venuesActualListOfVenues.size() == 1)
+      {
+        output = "* " + output;
+      }
+      System.out.println(output);
     }
 
     
@@ -56,10 +64,8 @@ public class VenueHireSystem {
 
 
     // Check if the venue code already exists
-    for (Venue venue : venuesActualListOfVenues)
-    {
-      if (venue.getVenueCode().equals(venueCode))
-      {
+    for (Venue venue : venuesActualListOfVenues) {
+      if (venue.getVenueCode().equals(venueCode)) {
         System.out.printf(MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.getMessage(), venueCode, venue.getVenueName());
         return;
       }
