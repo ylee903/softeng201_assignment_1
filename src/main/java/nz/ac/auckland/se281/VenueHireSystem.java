@@ -118,10 +118,10 @@ public class VenueHireSystem {
     }
 
     // Check if the venue code already exists
+    // can't call static method on instace (non static)
     for (Venue venue : venuesActualListOfVenues) {
       if (venue.getVenueCode().equals(venueCode)) {
-        System.out.printf(
-            MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.getMessage(), venueCode, venue.getVenueName());
+        MessageCli.VENUE_NOT_CREATED_CODE_EXISTS.printMessage(venueCode, venue.getVenueName());
         return;
       }
     }
