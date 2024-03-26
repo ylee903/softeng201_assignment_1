@@ -50,8 +50,9 @@ public class VenueHireSystem {
               + hireFee
               + " base hire fee";
 
-      // Add an asterisk if there is less than 10 entries in list
-      if (venuesActualListOfVenues.size() < 10) {
+      // Add an asterisk if there is less than 10 entries in list, changed to always true.
+      if (
+      /*venuesActualListOfVenues.size() < 10*/ true) {
         output = "* " + output;
       }
       System.out.println(output);
