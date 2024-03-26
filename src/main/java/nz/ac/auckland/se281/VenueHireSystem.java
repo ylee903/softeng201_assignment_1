@@ -15,7 +15,7 @@ public class VenueHireSystem {
 
   public void printVenues() {
     if (venuesActualListOfVenues.isEmpty()) {
-      System.out.println(MessageCli.NO_VENUES.getMessage());
+      MessageCli.NO_VENUES.printMessage();
       /* Print using "System.out.println()", which is similar to "print()" in some other languages. MessageCli is likely the name of an enumeration or class.
       NO_VENUES is likely a constant (an enum value or static final variable) defined in the MessageCli enumeration or class.
       getMessage() is a method that retrieves the message associated with the NO_VENUES constant. This method is likely defined in the MessageCli enumeration or class.
