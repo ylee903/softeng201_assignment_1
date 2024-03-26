@@ -127,8 +127,9 @@ public class VenueHireSystem {
     }
 
     // Check if the venue name is empty
-    if (venueName == null || venueName.trim().isEmpty()) {
-      System.out.println(MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.getMessage());
+
+    if (venueName == null || /*or operator */ venueName.trim().isEmpty()) {
+      MessageCli.VENUE_NOT_CREATED_EMPTY_NAME.printMessage();
       return;
     }
 
@@ -143,7 +144,7 @@ public class VenueHireSystem {
      * but this would be totally pointless, since we would not be able to assignh it to venuesActualListOfVenues (which is created by the Venue.java class file,     * and is a list of all the venues created in the system.
      */
     venuesActualListOfVenues.add(newVenueInstance);
-    System.out.printf(MessageCli.VENUE_SUCCESSFULLY_CREATED.getMessage(), venueName, venueCode);
+    MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
   }
 
   public void setSystemDate(String dateInput) {
