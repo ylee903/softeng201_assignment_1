@@ -35,14 +35,14 @@ public class VenueHireSystem {
     }
 
     // This prints the details of each venue in the list
-    for (Venue venuesActualListOfVenues : venuesActualListOfVenues) {
+    for (Venue venue : venuesActualListOfVenues) {
       String output =
           String.format(
               MessageCli.VENUE_ENTRY.getMessage(),
-              venuesActualListOfVenues.getVenueName(),
-              venuesActualListOfVenues.getVenueCode(),
-              venuesActualListOfVenues.getCapacity(),
-              venuesActualListOfVenues.getHireFee());
+              venue.getVenueName(),
+              venue.getVenueCode(),
+              venue.getCapacity(),
+              venue.getHireFee());
       MessageCli.VENUE_ENTRY.printMessage(output);
     }
 
