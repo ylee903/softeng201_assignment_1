@@ -68,20 +68,13 @@ public class VenueHireSystem {
     }
 
     // This prints the details of each venue in the list, the date available will be added later
-    for (Venue venue : venuesActualListOfVenues) {
+    for (Venue venueLoop : venuesActualListOfVenues) {
       MessageCli.VENUE_ENTRY.printMessage(
-          venue.getVenueName(),
-          venue.getVenueCode(),
-          String.valueOf(venue.getCapacity()),
-          String.valueOf(venue.getHireFee()));
+          venueLoop.getVenueName(),
+          venueLoop.getVenueCode(),
+          String.valueOf(venueLoop.getCapacity()),
+          String.valueOf(venueLoop.getHireFee()));
     }
-
-    /*
-    else
-    {
-      // code to print out the venues
-    }
-    */
   }
 
   public void createVenue(
@@ -136,13 +129,6 @@ public class VenueHireSystem {
     Venue
         newVenueInstance /*this is the "variable name" or more correctly, the name of the object or instance*/ =
             new Venue(venueName, venueCode, capacityInputAsInterger, hireFeeAsInterger);
-    /* on the right hand sign of the equation, are creating an instance of the object with the properties/fields/ attributes from the "Venue.java" class file, the object has the respective fields filled in from
-     * the matching parameter names passed in the method "createVenue(String venueName, String venueCode, String capacityInputAsString, String hireFeeInputAsString)"
-     *
-     * on the left hand side, we assign a variable name to this instance or object, so that whilst inide of this method, we can actually assign add it to "venuesActualListOfVenues",
-     * we could create an instace without the instance being assigned a variable (more accurately instance/object name (pleaes tell me which one is even more correct)),
-     * but this would be totally pointless, since we would not be able to assignh it to venuesActualListOfVenues (which is created by the Venue.java class file,     * and is a list of all the venues created in the system.
-     */
     venuesActualListOfVenues.add(newVenueInstance);
     MessageCli.VENUE_SUCCESSFULLY_CREATED.printMessage(venueName, venueCode);
   }
