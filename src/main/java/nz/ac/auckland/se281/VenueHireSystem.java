@@ -20,12 +20,28 @@ public class VenueHireSystem {
 
   public void printVenues() {
 
+    // An array that prints the number of venues, using printMessage from the MessageCli class and
+    // the numbersInWords array.
+    // we need to use NUMBER_VENUES("There %s %s venue%s in the system:") in printMessage.
+    // We need to swtich between singular (is) and plural (are) for first %s
+    // For second %s we need to use word numbers for less than 10 venues, and then we must use
+    // numberals for 10 or more venues
+    // For third %s we need to use the word "s" for plural venues
+
     String[] numbersInWords = {
       "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
     };
 
-    if (venuesActualListOfVenues.isEmpty()) {
+    int venueCount = venuesActualListOfVenues.size();
+
+    if (venueCount == 0) {
       MessageCli.NO_VENUES.printMessage();
+    } else {
+      String verb = (venueCount == 1) ? "is" : "are";
+      String number = (venueCount < 10) ? numbersInWords[venueCount] : String.valueOf(venueCount);
+      String plural = (venueCount == 1) ? "" : "s";
+
+      MessageCli.NUMBER_VENUES.printMessage(verb, number, plural);
     }
 
     // This prints the details of each venue in the list, the date available will be added later
