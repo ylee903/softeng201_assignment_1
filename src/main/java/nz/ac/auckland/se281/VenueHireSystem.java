@@ -27,13 +27,10 @@ public class VenueHireSystem {
     // For second %s we need to use word numbers for less than 10 venues, and then we must use
     // numberals for 10 or more venues
     // For third %s we need to use the word "s" for plural venues
-
     String[] numbersInWords = {
       "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
     };
-
     int venueCount = venuesActualListOfVenues.size();
-
     if (venueCount == 0) {
       MessageCli.NO_VENUES.printMessage();
     } else {
