@@ -34,7 +34,7 @@ public class VenueHireSystem {
       System.out.println("There are " + venuesActualListOfVenues.size() + " venues in the system:");
     }
 
-    // This prints the details of each venue in the list
+    // This prints the details of each venue in the list, the date available will be added later
     for (Venue venue : venuesActualListOfVenues) {
       MessageCli.VENUE_ENTRY.printMessage(
           venue.getVenueName(),

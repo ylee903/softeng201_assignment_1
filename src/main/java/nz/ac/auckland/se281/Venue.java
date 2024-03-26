@@ -4,7 +4,7 @@ public class Venue {
   private String venueNameProperty;
   private String venueCodeProperty;
   private int capacityProperty;
-  private double hireFeeProperty;
+  private int hireFeeProperty;
 
   /**
    * Constructs a new Venue with the given name, code, capacity, and hire fee.
@@ -33,7 +33,7 @@ public class Venue {
     return capacityProperty;
   }
 
-  public double getHireFee() {
+  public int getHireFee() {
     return hireFeeProperty;
   }
 }
