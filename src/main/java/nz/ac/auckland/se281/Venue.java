@@ -6,17 +6,14 @@ public class Venue {
   private int capacityProperty;
   private double hireFeeProperty;
 
-
-
-/**
- * Constructs a new Venue with the given name, code, capacity, and hire fee.
- *
- * @param venueName the name of the venue
- * @param venueCode the code of the venue
- * @param capacityInput the capacity of the venue as a string
- * @param hireFeeInput the hire fee of the venue as a string
- */
-
+  /**
+   * Constructs a new Venue with the given name, code, capacity, and hire fee.
+   *
+   * @param venueName the name of the venue
+   * @param venueCode the code of the venue
+   * @param capacityInput the capacity of the venue as a string
+   * @param hireFeeInput the hire fee of the venue as a string
+   */
   public Venue(String venueName, String venueCode, int capacityInput, int hireFeeInput) {
     this.venueNameProperty = venueName;
     this.venueCodeProperty = venueCode;
