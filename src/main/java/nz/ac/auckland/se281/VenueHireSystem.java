@@ -37,7 +37,10 @@ public class VenueHireSystem {
     // This prints the details of each venue in the list
     for (Venue venue : venuesActualListOfVenues) {
       MessageCli.VENUE_ENTRY.printMessage(
-          venue.getVenueName(), venue.getVenueCode(), venue.getCapacity(), venue.getHireFee());
+          venue.getVenueName(),
+          venue.getVenueCode(),
+          String.valueOf(venue.getCapacity()),
+          String.valueOf(venue.getHireFee()));
     }
 
     /*
@@ -55,29 +58,29 @@ public class VenueHireSystem {
       String hireFeeInputAsString) {
     int capacityInputAsInterger;
     int hireFeeAsInterger;
-    // Try capacity and hire fee as an integers
+
+    // Try capacity and hire fee as integers, if they are not integers, catch the exception and use
+    // printMessage for error message
     try {
       capacityInputAsInterger = Integer.parseInt(capacityInputAsString);
     } catch (NumberFormatException e) {
-      System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("capacity", " an"));
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " an");
       return;
     }
     try {
       hireFeeAsInterger = Integer.parseInt(hireFeeInputAsString);
     } catch (NumberFormatException e) {
-      System.out.println(MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("hire fee", ""));
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", "");
       return;
     }
 
     // Check if capacity and hire fee are positive values
     if (capacityInputAsInterger <= 0) {
-      System.out.println(
-          MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("capacity", " positive"));
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("capacity", " positive");
       return;
     }
     if (hireFeeAsInterger <= 0) {
-      System.out.println(
-          MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.getMessage("hire fee", " positive"));
+      MessageCli.VENUE_NOT_CREATED_INVALID_NUMBER.printMessage("hire fee", " positive");
       return;
     }
 
