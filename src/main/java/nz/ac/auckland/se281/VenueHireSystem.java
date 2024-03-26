@@ -37,6 +37,28 @@ public class VenueHireSystem {
       String verb = (venueCount == 1) ? "is" : "are";
       String number = (venueCount < 10) ? numbersInWords[venueCount] : String.valueOf(venueCount);
       String plural = (venueCount == 1) ? "" : "s";
+      /* The above code is a more concise way of writing the following code:
+      String verb;
+      if (venueCount == 1) {
+        verb = "is";
+      } else {
+        verb = "are";
+      }
+
+      String number;
+      if (venueCount < 10) {
+        number = numbersInWords[venueCount];
+      } else {
+        number = String.valueOf(venueCount);
+      }
+
+      String plural;
+      if (venueCount == 1) {
+        plural = "";
+      } else {
+        plural = "s";
+      }
+      */
 
       MessageCli.NUMBER_VENUES.printMessage(verb, number, plural);
     }
