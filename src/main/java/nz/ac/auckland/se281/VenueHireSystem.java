@@ -7,6 +7,11 @@ import nz.ac.auckland.se281.Types.FloralType;
 
 public class VenueHireSystem {
 
+  // This is a private instance variable that holds a list of Venue objects.
+  // 'private' means this variable can only be accessed within this class.
+  // 'List<Venue>' indicates that this is a list that will only contain objects of type Venue.
+  // 'venuesActualListOfVenues' is the name of the variable, and it's used to store the actual list
+  // of venues in the system.
   private List<Venue> venuesActualListOfVenues;
 
   public VenueHireSystem() {
