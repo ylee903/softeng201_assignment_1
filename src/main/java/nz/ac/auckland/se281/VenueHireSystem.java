@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import nz.ac.auckland.se281.Types.CateringType;
@@ -13,6 +14,7 @@ public class VenueHireSystem {
   // 'venuesActualListOfVenues' is the name of the variable, and it's used to store the actual list
   // of venues in the system.
   private List<Venue> venuesActualListOfVenues;
+  private LocalDate SystemDate;
 
   public VenueHireSystem() {
     this.venuesActualListOfVenues = new ArrayList<>();
@@ -139,12 +141,25 @@ public class VenueHireSystem {
   }
 
   public void setSystemDate(String dateInput) {
-    // TODO implement this method
+    // DateTimeFormatter: This is the name of the class provided by the java.time.format package.
+    // This class is responsible for formatting and parsing dates and times in Java.
+
+    // formatter: This is the name of the variable or object (instance) being declared. In Java, you
+    // declare variables with a specific type (in this case, DateTimeFormatter) followed by the
+    // variable name (formatter). This variable will refer to an instance of the DateTimeFormatter
+    // class.
+
+    // DateTimeFormatter.ofPattern("dd/MM/yyyy"): This is a static method call on the
+    // DateTimeFormatter class. The method ofPattern() is a factory method used to create instances
+    // of DateTimeFormatter. It takes a string argument representing the pattern used for formatting
+    // and parsing dates.
+
+    DateTimeFormatter formmatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    systemDate = LocalDate.parse(dateInput, formatter);
+    MessageCli.DATE_SET.printMessage(dateInput);
   }
 
-  public void printSystemDate() {
-    // TODO implement this method
-  }
+  public void printSystemDate() {}
 
   public void makeBooking(String[] options) {
     // TODO implement this method
