@@ -78,11 +78,15 @@ public class VenueHireSystem {
     // This prints the details of each venue in the list, the date available will be added later
     // thgis is the target
     for (Venue venueLoop : venuesActualListOfVenues) {
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+      String nextAvailable = venueLoop.getNextAvailableDate().format(formatter);
+
       MessageCli.VENUE_ENTRY.printMessage(
           venueLoop.getVenueName(),
           venueLoop.getVenueCode(),
           String.valueOf(venueLoop.getCapacity()),
-          String.valueOf(venueLoop.getHireFee()));
+          String.valueOf(venueLoop.getHireFee()),
+          nextAvailable);
     }
   }
 
