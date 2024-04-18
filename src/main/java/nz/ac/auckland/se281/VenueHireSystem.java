@@ -207,7 +207,32 @@ public class VenueHireSystem {
       MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options[1], systemDate.toString());
       return;
     }
-    // make the booking and print the success message using MAKE_BOOKING_SUCCESSFUL
+
+    String customerEmail = options[2];
+    int numberOfAttendees = Integer.parseInt(options[3]);
+
+    // Adjust the number of attendees if necessary
+    int minAttendees = venue.getCapacity() / 4;
+    int maxAttendees = venue.getCapacity();
+
+    if (numberOfAttendees < minAttendees) {
+      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
+          Integer.toString(numberOfAttendees),
+          Integer.toString(minAttendees),
+          Integer.toString(venue.getCapacity()));
+      numberOfAttendees = minAttendees;
+    } else if (numberOfAttendees > maxAttendees) {
+      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
+          Integer.toString(numberOfAttendees),
+          Integer.toString(maxAttendees),
+          Integer.toString(venue.getCapacity()));
+      numberOfAttendees = maxAttendees;
+    }
+
+    // Make the booking
+    venue.bookOnDate(bookingDate, customerEmail, numberOfAttendees);
+    MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
+        venue.getVenueCode(), customerEmail, options[1], Integer.toString(numberOfAttendees));
   }
 
   public void printBookings(String venueCode) {
