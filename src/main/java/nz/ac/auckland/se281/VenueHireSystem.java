@@ -238,7 +238,7 @@ public class VenueHireSystem {
   }
 
   public void printBookings(String venueCode) {
-    // print all bookings for the specified venue code
+    // if the venue code does not exist, print error message and return
     Venue venue = null;
     for (Venue venueLoop : venuesActualListOfVenues) {
       if (venueLoop.getVenueCode().equals(venueCode)) {
