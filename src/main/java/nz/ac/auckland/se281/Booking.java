@@ -3,28 +3,28 @@ package nz.ac.auckland.se281;
 import java.time.LocalDate;
 
 public class Booking {
-  private String venueCode;
+  private String bookingReference;
   private LocalDate date;
   private String customerEmail;
   private int attendees;
-  private String bookingReference;
+  private Venue venue; // Change from venueCode to Venue object to store more information
 
   public Booking(
-      String venueCode,
-      LocalDate date,
-      String customerEmail,
-      int attendees,
-      String bookingReference) {
-    this.venueCode = venueCode;
+      String bookingReference, Venue venue, LocalDate date, String customerEmail, int attendees) {
+    this.bookingReference = bookingReference;
+    this.venue = venue;
     this.date = date;
     this.customerEmail = customerEmail;
     this.attendees = attendees;
-    this.bookingReference = bookingReference;
   }
 
-  // Getters...
-  public String getVenueCode() {
-    return venueCode;
+  // Getters
+  public String getBookingReference() {
+    return bookingReference;
+  }
+
+  public Venue getVenue() {
+    return venue;
   }
 
   public LocalDate getDate() {
@@ -37,9 +37,5 @@ public class Booking {
 
   public int getAttendees() {
     return attendees;
-  }
-
-  public String getBookingReference() {
-    return bookingReference;
   }
 }

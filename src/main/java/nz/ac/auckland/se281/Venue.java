@@ -5,54 +5,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Venue {
-  private String venueNameProperty;
-  private String venueCodeProperty;
-  private int capacityProperty;
-  private int hireFeeProperty;
+  private String venueName;
+  private String venueCode;
+  private int capacity;
+  private int hireFee;
   private List<Booking> bookings;
 
-  /**
-   * Constructs a new Venue with the given name, code, capacity, and hire fee.
-   *
-   * @param venueName the name of the venue
-   * @param venueCode the code of the venue
-   * @param capacityInput the capacity of the venue as a string
-   * @param hireFeeInput the hire fee of the venue as a string
-   */
-  public Venue(String venueName, String venueCode, int capacityInput, int hireFeeInput) {
-    this.venueNameProperty = venueName;
-    this.venueCodeProperty = venueCode;
-    this.capacityProperty = capacityInput;
-    this.hireFeeProperty = hireFeeInput;
+  public Venue(String venueName, String venueCode, int capacity, int hireFee) {
+    this.venueName = venueName;
+    this.venueCode = venueCode;
+    this.capacity = capacity;
+    this.hireFee = hireFee;
     this.bookings = new ArrayList<>();
   }
 
+  // Getters
   public String getVenueName() {
-    return venueNameProperty;
+    return venueName;
   }
 
   public String getVenueCode() {
-    return venueCodeProperty;
+    return venueCode;
   }
 
   public int getCapacity() {
-    return capacityProperty;
+    return capacity;
   }
 
   public int getHireFee() {
-    return hireFeeProperty;
+    return hireFee;
   }
 
-  public boolean isBookedOnDate(LocalDate date) {
-    for (Booking booking : bookings) {
-      if (booking.getDate().equals(date)) {
-        return true;
-      }
-    }
-    return false;
+  public boolean isAvailableOn(LocalDate date) {
+    return bookings.stream().noneMatch(b -> b.getDate().equals(date));
   }
 
-  public void bookOnDate(LocalDate date, String customerEmail, int attendees) {
-    bookings.add(new Booking(venueCodeProperty, date, customerEmail, attendees));
+  public void addBooking(Booking booking) {
+    bookings.add(booking);
   }
 }
