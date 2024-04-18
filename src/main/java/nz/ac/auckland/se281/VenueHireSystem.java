@@ -238,17 +238,33 @@ public class VenueHireSystem {
   }
 
   public void printBookings(String venueCode) {
-    // if the venue code does not exist, print error message and return
+    // Find the venue by venue code
     Venue venue = null;
-    for (Venue venueLoop : venuesActualListOfVenues) {
-      if (venueLoop.getVenueCode().equals(venueCode)) {
-        venue = venueLoop;
+    for (Venue v : venuesActualListOfVenues) {
+      if (v.getVenueCode().equals(venueCode)) {
+        venue = v;
         break;
       }
     }
+
+    // Check if venue was found
     if (venue == null) {
       MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
       return;
+    }
+    // print the booking header using PRINT_BOOKINGS_HEADER and venue name
+    MessageCli.PRINT_BOOKINGS_HEADER.printMessage(venue.getVenueName());
+
+    // check if there are any bookings for the venue, if no bookings print PRINT_BOOKINGS_NONE
+    if (venue.getBookings().isEmpty()) {
+      MessageCli.PRINT_BOOKINGS_NONE.printMessage(venue.getVenueName());
+      return;
+    }
+
+    // print each booking using PRINT_BOOKINGS_ENTRY
+    for (Booking booking : venue.getBookings()) {
+      MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(
+          booking.getBookingReference(), booking.getDate().toString());
     }
   }
 

@@ -68,4 +68,8 @@ public class Venue {
   public boolean isBookedOnDate(LocalDate date) {
     return bookings.stream().anyMatch(b -> b.getDate().equals(date));
   }
+
+  public List<Booking> getBookings() {
+    return this.bookings;
+  }
 }
