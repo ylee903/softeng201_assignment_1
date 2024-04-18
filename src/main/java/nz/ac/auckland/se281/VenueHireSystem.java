@@ -256,6 +256,10 @@ public class VenueHireSystem {
   public void viewInvoice(String bookingReference) {
     // TODO implement this method
   }
+
+  public static LocalDate getSystemDate() {
+    return systemDate;
+  }
 }
 
 /*

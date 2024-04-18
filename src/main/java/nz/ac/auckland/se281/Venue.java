@@ -20,7 +20,7 @@ public class Venue {
     this.bookings = new ArrayList<>();
   }
 
-  public LocalDate getNextAvailableDate() {
+  public LocalDate getNextAvailableDate(LocalDate systemDate) {
     LocalDate start = systemDate != null ? systemDate : LocalDate.now();
 
     // Collect all the dates that have bookings into a sorted list
