@@ -1,5 +1,6 @@
 package nz.ac.auckland.se281;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,8 @@ public class VenueHireSystem {
   // 'venuesActualListOfVenues' is the name of the variable, and it's used to store the actual list
   // of venues in the system.
   private List<Venue> venuesActualListOfVenues;
-  private LocalDate SystemDate;
+  private LocalDate systemDate;
+  private DateTimeFormatter formatter;
 
   public VenueHireSystem() {
     this.venuesActualListOfVenues = new ArrayList<>();
@@ -154,15 +156,31 @@ public class VenueHireSystem {
     // of DateTimeFormatter. It takes a string argument representing the pattern used for formatting
     // and parsing dates.
 
-    DateTimeFormatter formmatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     systemDate = LocalDate.parse(dateInput, formatter);
     MessageCli.DATE_SET.printMessage(dateInput);
   }
 
-  public void printSystemDate() {}
+  public void printSystemDate() {
+    if (systemDate == null) {
+      MessageCli.CURRENT_DATE.printMessage("not set");
+    } else {
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+      MessageCli.CURRENT_DATE.printMessage(systemDate.format(formatter));
+    }
+  }
 
   public void makeBooking(String[] options) {
-    // TODO implement this method
+    // if date not set, then print error message and return
+    if (systemDate == null) {
+      MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
+      return;
+    }
+    // if no venues are available print error message and return
+    if (venuesActualListOfVenues.isEmpty()) {
+      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
+      return;
+    }
   }
 
   public void printBookings(String venueCode) {
