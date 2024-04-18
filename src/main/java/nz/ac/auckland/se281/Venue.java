@@ -63,10 +63,6 @@ public class Venue {
     return bookings.stream().noneMatch(b -> b.getDate().equals(date));
   }
 
-  public void addBooking(Booking booking) {
-    bookings.add(booking);
-  }
-
   public boolean isBookedOnDate(LocalDate date) {
     return bookings.stream().anyMatch(b -> b.getDate().equals(date));
   }
