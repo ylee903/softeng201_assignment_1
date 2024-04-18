@@ -1,6 +1,7 @@
 package nz.ac.auckland.se281;
 
 import java.time.LocalDate;
+import nz.ac.auckland.se281.Types.CateringType;
 
 public class Booking {
   private String bookingReference;
@@ -8,6 +9,7 @@ public class Booking {
   private String customerEmail;
   private int attendees;
   private Venue venue; // Change from venueCode to Venue object to store more information
+  private CateringType cateringType;
 
   public Booking(
       String bookingReference, Venue venue, LocalDate date, String customerEmail, int attendees) {
@@ -16,6 +18,10 @@ public class Booking {
     this.date = date;
     this.customerEmail = customerEmail;
     this.attendees = attendees;
+  }
+
+  public void setCateringType(CateringType cateringType) {
+    this.cateringType = cateringType;
   }
 
   // Getters
@@ -37,5 +43,9 @@ public class Booking {
 
   public int getAttendees() {
     return attendees;
+  }
+
+  public CateringType getCateringType() {
+    return this.cateringType;
   }
 }
