@@ -170,62 +170,44 @@ public class VenueHireSystem {
   }
 
   public void makeBooking(String[] options) {
-    // Extract options
-    String venueCode = options[0];
-    String bookingDateStr = options[1];
-    String customerEmail = options[2];
-    int numAttendees = Integer.parseInt(options[3]);
-
-    // Check if system date is set
-    if (this.systemDate == null) {
-      MessageCli.SYSTEM_DATE_NOT_SET.print();
+    // if date not set, then print error message and return
+    if (systemDate == null) {
+      MessageCli.BOOKING_NOT_MADE_DATE_NOT_SET.printMessage();
       return;
     }
-
-    // Check for existence of any venues
-    if (this.venues.isEmpty()) {
-      MessageCli.NO_VENUES.print();
+    // if no venues are available print error message and return
+    if (venuesActualListOfVenues.isEmpty()) {
+      MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
       return;
     }
-
-    // Find the venue by code
-    Venue venue =
-        this.venues.stream().filter(v -> v.getCode().equals(venueCode)).findFirst().orElse(null);
+    // if the venue code does not exist, print error message and return
+    Venue venue = null;
+    for (Venue venueLoop : venuesActualListOfVenues) {
+      if (venueLoop.getVenueCode().equals(options[0])) {
+        venue = venueLoop;
+        break;
+      }
+    }
     if (venue == null) {
-      MessageCli.VENUE_NOT_FOUND.print(venueCode);
+      MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[0]);
       return;
     }
 
-    // Parse booking date and compare with system date
-    LocalDate bookingDate =
-        LocalDate.parse(bookingDateStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-    if (bookingDate.isBefore(this.systemDate)) {
-      MessageCli.BOOKING_DATE_PAST.print(bookingDateStr, this.systemDate);
+    // if the venue is not available on the specified date, print error message using
+    // BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED and return
+    LocalDate bookingDate = LocalDate.parse(options[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    if (venue.isBookedOnDate(bookingDate)) {
+      MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(
+          venue.getVenueName(), options[1]);
       return;
     }
 
-    // Check if venue is available on the booking date
-    if (venue.isBookedOn(bookingDate)) {
-      MessageCli.VENUE_ALREADY_BOOKED.print(venue.getName(), bookingDateStr);
+    // if the date is in the past, print error message using BOOKING_NOT_MADE_PAST_DATE and return
+    if (bookingDate.isBefore(systemDate)) {
+      MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options[1], systemDate.toString());
       return;
     }
-
-    // Adjust number of attendees based on venue capacity
-    int adjustedAttendees = numAttendees;
-    if (numAttendees < venue.getCapacity() * 0.25) {
-      adjustedAttendees = (int) (venue.getCapacity() * 0.25);
-      MessageCli.ATTENDEES_ADJUSTED.print(numAttendees, adjustedAttendees, venue.getCapacity());
-    } else if (numAttendees > venue.getCapacity()) {
-      adjustedAttendees = venue.getCapacity();
-      MessageCli.ATTENDEES_ADJUSTED.print(numAttendees, adjustedAttendees, venue.getCapacity());
-    }
-
-    // Create and store the booking
-    String bookingRef = BookingReferenceGenerator.generateBookingReference();
-    Booking booking = new Booking(bookingRef, venue, bookingDate, customerEmail, adjustedAttendees);
-    venue.addBooking(booking);
-    MessageCli.BOOKING_SUCCESSFUL.print(
-        bookingRef, venue.getName(), bookingDateStr, adjustedAttendees);
+    // make the booking and print the success message using MAKE_BOOKING_SUCCESSFUL
   }
 
   public void printBookings(String venueCode) {
