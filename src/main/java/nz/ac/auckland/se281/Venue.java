@@ -52,7 +52,10 @@ public class Venue {
     return false;
   }
 
-  public void bookOnDate(LocalDate date, String customerEmail, int attendees) {
-    bookings.add(new Booking(venueCodeProperty, date, customerEmail, attendees));
+  public void bookOnDate(
+      LocalDate date, String customerEmail, int attendees, String bookingReference) {
+    Booking booking =
+        new Booking(venueCodeProperty, date, customerEmail, attendees, bookingReference);
+    bookings.add(booking);
   }
 }
