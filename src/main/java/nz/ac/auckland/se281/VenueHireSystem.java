@@ -208,15 +208,6 @@ public class VenueHireSystem {
       return;
     }
     // make the booking and print the success message using MAKE_BOOKING_SUCCESSFUL
-    int attendees = Integer.parseInt(options[2]);
-    if (attendees > venue.getCapacity()) {
-      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
-          attendees, venue.getCapacity(), venue.getCapacity());
-      attendees = venue.getCapacity();
-    }
-    venue.bookOnDate(bookingDate);
-    MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
-        options[3], venue.getVenueName(), options[1], attendees);
   }
 
   public void printBookings(String venueCode) {

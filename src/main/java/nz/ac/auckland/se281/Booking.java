@@ -1,3 +1,7 @@
+package nz.ac.auckland.se281;
+
+import java.time.LocalDate;
+
 public class Booking {
   private String venueCode;
   private LocalDate date;

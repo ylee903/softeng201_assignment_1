@@ -9,7 +9,6 @@ public class Venue {
   private String venueCodeProperty;
   private int capacityProperty;
   private int hireFeeProperty;
-  private List<LocalDate> bookingDates;
   private List<Booking> bookings;
 
   /**
@@ -25,7 +24,6 @@ public class Venue {
     this.venueCodeProperty = venueCode;
     this.capacityProperty = capacityInput;
     this.hireFeeProperty = hireFeeInput;
-    this.bookingDates = new ArrayList<>();
     this.bookings = new ArrayList<>();
   }
 
