@@ -210,6 +210,26 @@ public class VenueHireSystem {
     // make the booking and print the success message using MAKE_BOOKING_SUCCESSFUL
     // here is the fking part I keep failing at:
 
+    // Additional steps to handle booking creation
+    String bookingReference = BookingReferenceGenerator.generateBookingReference();
+    int attendees = Integer.parseInt(options[3]);
+    int capacity = venue.getCapacity();
+
+    // Adjust number of attendees if outside acceptable limits
+    if (attendees < capacity * 0.25 || attendees > capacity) {
+      int originalAttendees = attendees;
+      attendees = Math.max((int) (capacity * 0.25), Math.min(attendees, capacity));
+      MessageCli.BOOKING_ATTENDEES_ADJUSTED.printMessage(
+          String.valueOf(originalAttendees), String.valueOf(attendees), String.valueOf(capacity));
+    }
+
+    // Create and store the booking
+    Booking newBooking = new Booking(bookingReference, venue, bookingDate, options[2], attendees);
+    venue.addBooking(newBooking);
+
+    // Print success message
+    MessageCli.MAKE_BOOKING_SUCCESSFUL.printMessage(
+        bookingReference, venue.getVenueName(), options[1], String.valueOf(attendees));
   }
 
   public void printBookings(String venueCode) {
