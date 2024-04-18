@@ -15,7 +15,7 @@ public class VenueHireSystem {
   // 'venuesActualListOfVenues' is the name of the variable, and it's used to store the actual list
   // of venues in the system.
   private List<Venue> venuesActualListOfVenues;
-  private LocalDate systemDate;
+  private LocalDate systemDate = LocalDate.of(1900, 1, 1);
 
   public VenueHireSystem() {
     this.venuesActualListOfVenues = new ArrayList<>();
@@ -79,7 +79,7 @@ public class VenueHireSystem {
     // thgis is the target
     for (Venue venueLoop : venuesActualListOfVenues) {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-      String nextAvailable = venueLoop.getNextAvailableDate().format(formatter);
+      String nextAvailable = venueLoop.getNextAvailableDate(systemDate).format(formatter);
 
       MessageCli.VENUE_ENTRY.printMessage(
           venueLoop.getVenueName(),
@@ -255,10 +255,6 @@ public class VenueHireSystem {
 
   public void viewInvoice(String bookingReference) {
     // TODO implement this method
-  }
-
-  public static LocalDate getSystemDate() {
-    return systemDate;
   }
 }
 
