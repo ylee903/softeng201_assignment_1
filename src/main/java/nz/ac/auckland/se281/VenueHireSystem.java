@@ -86,15 +86,6 @@ public class VenueHireSystem {
             nextAvailable);
       }
     }
-
-    // This prints the details of each venue in the list, the date available will be added later
-    for (Venue venueLoop : venuesActualListOfVenues) {
-      MessageCli.VENUE_ENTRY.printMessage(
-          venueLoop.getVenueName(),
-          venueLoop.getVenueCode(),
-          String.valueOf(venueLoop.getCapacity()),
-          String.valueOf(venueLoop.getHireFee()));
-    }
   }
 
   public void createVenue(
