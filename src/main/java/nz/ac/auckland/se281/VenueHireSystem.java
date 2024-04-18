@@ -15,7 +15,7 @@ public class VenueHireSystem {
   // 'venuesActualListOfVenues' is the name of the variable, and it's used to store the actual list
   // of venues in the system.
   private List<Venue> venuesActualListOfVenues;
-  private LocalDate systemDate = LocalDate.of(1900, 1, 1);
+  private LocalDate systemDate; // = LocalDate.of(1900, 1, 1)
 
   public VenueHireSystem() {
     this.venuesActualListOfVenues = new ArrayList<>();
