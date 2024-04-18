@@ -195,9 +195,18 @@ public class VenueHireSystem {
 
     // if the venue is not available on the specified date, print error message using
     // BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED and return
+    LocalDate bookingDate = LocalDate.parse(options[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    if (venue.isBookedOnDate(bookingDate)) {
+      MessageCli.BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED.printMessage(
+          venue.getVenueName(), options[1]);
+      return;
+    }
 
     // if the date is in the past, print error message using BOOKING_NOT_MADE_PAST_DATE and return
-
+    if (bookingDate.isBefore(systemDate)) {
+      MessageCli.BOOKING_NOT_MADE_PAST_DATE.printMessage(options[1], systemDate.toString());
+      return;
+    }
   }
 
   public void printBookings(String venueCode) {
