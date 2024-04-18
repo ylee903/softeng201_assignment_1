@@ -10,6 +10,7 @@ public class Venue {
   private int capacityProperty;
   private int hireFeeProperty;
   private List<LocalDate> bookingDates;
+  private List<Booking> bookings;
 
   /**
    * Constructs a new Venue with the given name, code, capacity, and hire fee.
@@ -25,6 +26,7 @@ public class Venue {
     this.capacityProperty = capacityInput;
     this.hireFeeProperty = hireFeeInput;
     this.bookingDates = new ArrayList<>();
+    this.bookings = new ArrayList<>();
   }
 
   public String getVenueName() {
@@ -44,10 +46,15 @@ public class Venue {
   }
 
   public boolean isBookedOnDate(LocalDate date) {
-    return bookingDates.contains(date);
+    for (Booking booking : bookings) {
+      if (booking.getDate().equals(date)) {
+        return true;
+      }
+    }
+    return false;
   }
 
-  public void bookOnDate(LocalDate date) {
-    bookingDates.add(date);
+  public void bookOnDate(LocalDate date, String customerEmail, int attendees) {
+    bookings.add(new Booking(venueCodeProperty, date, customerEmail, attendees));
   }
 }
