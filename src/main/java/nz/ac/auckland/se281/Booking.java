@@ -1,8 +1,3 @@
-package nz.ac.auckland.se281;
-
-import java.time.LocalDate;
-
-// Booking.java
 public class Booking {
   private String venueCode;
   private LocalDate date;
@@ -19,5 +14,17 @@ public class Booking {
   // Getters...
   public String getVenueCode() {
     return venueCode;
+  }
+
+  public LocalDate getDate() {
+    return date;
+  }
+
+  public String getCustomerEmail() {
+    return customerEmail;
+  }
+
+  public int getAttendees() {
+    return attendees;
   }
 }
