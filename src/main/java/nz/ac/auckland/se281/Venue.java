@@ -1,10 +1,15 @@
 package nz.ac.auckland.se281;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Venue {
   private String venueNameProperty;
   private String venueCodeProperty;
   private int capacityProperty;
   private int hireFeeProperty;
+  private List<LocalDate> bookingDates;
 
   /**
    * Constructs a new Venue with the given name, code, capacity, and hire fee.
@@ -19,6 +24,7 @@ public class Venue {
     this.venueCodeProperty = venueCode;
     this.capacityProperty = capacityInput;
     this.hireFeeProperty = hireFeeInput;
+    this.bookingDates = new ArrayList<>();
   }
 
   public String getVenueName() {
@@ -35,5 +41,13 @@ public class Venue {
 
   public int getHireFee() {
     return hireFeeProperty;
+  }
+
+  public boolean isBookedOnDate(LocalDate date) {
+    return bookingDates.contains(date);
+  }
+
+  public void bookOnDate(LocalDate date) {
+    bookingDates.add(date);
   }
 }

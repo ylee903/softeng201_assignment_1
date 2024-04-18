@@ -15,8 +15,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
   MainTest.Task1.class,
   MainTest.Task2.class,
-  // MainTest.Task3.class,
-  // MainTest.YourTests.class, // Uncomment this line to run your own tests
+  MainTest.Task3.class,
+  MainTest.YourTests.class, // Uncomment this line to run your own tests
 })
 public class MainTest {
 
@@ -713,6 +713,10 @@ public class MainTest {
       runCommands(PRINT_VENUES);
       assertContains("There are no venues in the system. Please create a venue first.");
     }
+
+    // @Test
+    // create a test to check if a venue code exists
+
   }
 
   private static final Object[] CREATE_NINE_VENUES =

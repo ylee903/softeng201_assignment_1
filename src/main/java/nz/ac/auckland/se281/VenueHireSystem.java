@@ -16,7 +16,6 @@ public class VenueHireSystem {
   // of venues in the system.
   private List<Venue> venuesActualListOfVenues;
   private LocalDate systemDate;
-  private DateTimeFormatter formatter;
 
   public VenueHireSystem() {
     this.venuesActualListOfVenues = new ArrayList<>();
@@ -181,6 +180,24 @@ public class VenueHireSystem {
       MessageCli.BOOKING_NOT_MADE_NO_VENUES.printMessage();
       return;
     }
+    // if the venue code does not exist, print error message and return
+    Venue venue = null;
+    for (Venue venueLoop : venuesActualListOfVenues) {
+      if (venueLoop.getVenueCode().equals(options[0])) {
+        venue = venueLoop;
+        break;
+      }
+    }
+    if (venue == null) {
+      MessageCli.BOOKING_NOT_MADE_VENUE_NOT_FOUND.printMessage(options[0]);
+      return;
+    }
+
+    // if the venue is not available on the specified date, print error message using
+    // BOOKING_NOT_MADE_VENUE_ALREADY_BOOKED and return
+
+    // if the date is in the past, print error message using BOOKING_NOT_MADE_PAST_DATE and return
+
   }
 
   public void printBookings(String venueCode) {
