@@ -238,7 +238,18 @@ public class VenueHireSystem {
   }
 
   public void printBookings(String venueCode) {
-    // TODO implement this method
+    // print all bookings for the specified venue code
+    Venue venue = null;
+    for (Venue venueLoop : venuesActualListOfVenues) {
+      if (venueLoop.getVenueCode().equals(venueCode)) {
+        venue = venueLoop;
+        break;
+      }
+    }
+    if (venue == null) {
+      MessageCli.PRINT_BOOKINGS_VENUE_NOT_FOUND.printMessage(venueCode);
+      return;
+    }
   }
 
   public void addCateringService(String bookingReference, CateringType cateringType) {
