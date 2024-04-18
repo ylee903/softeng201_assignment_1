@@ -261,10 +261,11 @@ public class VenueHireSystem {
       return;
     }
 
-    // print each booking using PRINT_BOOKINGS_ENTRY
+    // print each booking using PRINT_BOOKINGS_ENTRY, ensure date is outputed dd/mm/yyyy
     for (Booking booking : venue.getBookings()) {
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
       MessageCli.PRINT_BOOKINGS_ENTRY.printMessage(
-          booking.getBookingReference(), booking.getDate().toString());
+          booking.getBookingReference(), booking.getDate().format(formatter));
     }
   }
 
