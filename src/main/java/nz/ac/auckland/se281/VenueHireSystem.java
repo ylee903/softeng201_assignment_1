@@ -76,6 +76,7 @@ public class VenueHireSystem {
     }
 
     // This prints the details of each venue in the list, the date available will be added later
+    // thgis is the target
     for (Venue venueLoop : venuesActualListOfVenues) {
       MessageCli.VENUE_ENTRY.printMessage(
           venueLoop.getVenueName(),
