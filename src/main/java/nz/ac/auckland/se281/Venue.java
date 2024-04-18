@@ -29,12 +29,24 @@ public class Venue {
 
   private void updateNextAvailableDate() {
     if (bookings.isEmpty()) {
-      this.nextAvailableDate = LocalDate.now(); // If no bookings, available today
+      this.nextAvailableDate = LocalDate.now(); // Available today if no bookings
     } else {
-      // Sort bookings by date to find the latest date booked
       bookings.sort(Comparator.comparing(Booking::getDate));
-      LocalDate lastBookedDate = bookings.get(bookings.size() - 1).getDate();
-      this.nextAvailableDate = lastBookedDate.plusDays(1);
+
+      LocalDate currentDate = LocalDate.now();
+      LocalDate dateToCheck =
+          currentDate.isAfter(bookings.get(0).getDate()) ? currentDate : bookings.get(0).getDate();
+
+      for (Booking booking : bookings) {
+        if (!booking.getDate().equals(dateToCheck)) {
+          this.nextAvailableDate = dateToCheck; // Found a gap in bookings
+          return;
+        }
+        dateToCheck = dateToCheck.plusDays(1); // Move to the next day
+      }
+
+      // If no gaps, next available date is the day after the last booking
+      this.nextAvailableDate = bookings.get(bookings.size() - 1).getDate().plusDays(1);
     }
   }
 
