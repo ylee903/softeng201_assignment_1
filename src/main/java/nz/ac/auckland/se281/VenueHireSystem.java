@@ -341,6 +341,9 @@ public class VenueHireSystem {
   }
 
   public void viewInvoice(String bookingReference) {
+    // initialise total cost variable
+    int totalCost = 0;
+
     // check if there are any bookings with the booking reference, if not print error message using
     // VIEW_INVOICE_BOOKING_NOT_FOUND and return
     Booking booking = null;
@@ -368,6 +371,8 @@ public class VenueHireSystem {
     // print the venue fee using INVOICE_CONTENT_VENUE_FEE
     MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(
         String.valueOf(booking.getVenue().getHireFee()));
+    // add the venue fee to the total cost
+    totalCost += booking.getVenue().getHireFee();
 
     // create a variable to hold all of the catering types in one string, each catering type
     // seperated by a '/'
@@ -378,15 +383,36 @@ public class VenueHireSystem {
     // remove the last '/' from the string
     if (cateringTypes.length() > 0) {
       cateringTypes.deleteCharAt(cateringTypes.length() - 1);
-    }
-    // create a variable to sum all of the costs of catering types.
-    int cateringCost = 0;
-    for (CateringType cateringType : booking.getCateringType()) {
-      cateringCost += cateringType.getCostPerPerson() * booking.getAttendees();
+      // create a variable to sum all of the costs of catering types.
+      int cateringCost = 0;
+      for (CateringType cateringType : booking.getCateringType()) {
+        cateringCost += cateringType.getCostPerPerson() * booking.getAttendees();
+      }
+
+      MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(
+          cateringTypes.toString(), String.valueOf(cateringCost));
+      // add the catering cost to the total cost
+      totalCost += cateringCost;
     }
 
-    MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(
-        cateringTypes.toString(), String.valueOf(cateringCost));
+    // implement the logic to print the music cost using INVOICE_CONTENT_MUSIC_ENTRY if booking has
+    // music
+    if (booking.hasMusic()) {
+      MessageCli.INVOICE_CONTENT_MUSIC_ENTRY.printMessage("500");
+      // add the music cost to the total cost
+      totalCost += 500;
+    }
+    // implement the logic to print the floral cost using INVOICE_CONTENT_FLORAL_ENTRY if booking
+    // has floral
+    if (booking.getFloralType() != null) {
+      MessageCli.INVOICE_CONTENT_FLORAL_ENTRY.printMessage(
+          booking.getFloralType().getName(), String.valueOf(booking.getFloralType().getCost()));
+      // add the floral cost to the total cost
+      totalCost += booking.getFloralType().getCost();
+    }
+
+    // use INVOICE_CONTENT_BOTTOM_HALF to print the bottom half of the invoice and the total cost
+    MessageCli.INVOICE_CONTENT_BOTTOM_HALF.printMessage(String.valueOf(totalCost));
   }
 }
 
