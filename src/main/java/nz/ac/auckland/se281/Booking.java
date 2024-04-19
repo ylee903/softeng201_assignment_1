@@ -10,6 +10,7 @@ public class Booking {
   private int attendees;
   private Venue venue; // Change from venueCode to Venue object to store more information
   private CateringType cateringType;
+  private FloralType floralType;
 
   public Booking(
       String bookingReference, Venue venue, LocalDate date, String customerEmail, int attendees) {
