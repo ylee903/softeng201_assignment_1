@@ -14,6 +14,7 @@ public class Booking {
   private Venue venue; // Change from venueCode to Venue object to store more information
   private Set<CateringType> cateringType = new HashSet<>();
   private FloralType floralType = null;
+  private boolean hasMusic = false;
 
   public Booking(
       String bookingReference, Venue venue, LocalDate date, String customerEmail, int attendees) {
@@ -31,6 +32,11 @@ public class Booking {
   // implement floralType
   public void addFloralType(FloralType floralType) {
     this.floralType = floralType;
+  }
+
+  // implement hasMusic
+  public void addMusic() {
+    this.hasMusic = true;
   }
 
   // Getters
@@ -61,5 +67,10 @@ public class Booking {
   // implement getter for floralType
   public FloralType getFloralType() {
     return this.floralType;
+  }
+
+  // implement getter for hasMusic
+  public boolean hasMusic() {
+    return this.hasMusic;
   }
 }
