@@ -1,6 +1,8 @@
 package nz.ac.auckland.se281;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import nz.ac.auckland.se281.Types.CateringType;
 
 public class Booking {
@@ -9,8 +11,9 @@ public class Booking {
   private String customerEmail;
   private int attendees;
   private Venue venue; // Change from venueCode to Venue object to store more information
-  private CateringType cateringType;
-  private FloralType floralType;
+  private Set<CateringType> cateringType = new HashSet<>();
+
+  // private FloralType floralType;
 
   public Booking(
       String bookingReference, Venue venue, LocalDate date, String customerEmail, int attendees) {
@@ -21,8 +24,8 @@ public class Booking {
     this.attendees = attendees;
   }
 
-  public void setCateringType(CateringType cateringType) {
-    this.cateringType = cateringType;
+  public void addCateringType(CateringType cateringType) {
+    this.cateringType.add(cateringType);
   }
 
   // Getters
@@ -46,7 +49,7 @@ public class Booking {
     return attendees;
   }
 
-  public CateringType getCateringType() {
+  public Set<CateringType> getCateringType() {
     return this.cateringType;
   }
 }
