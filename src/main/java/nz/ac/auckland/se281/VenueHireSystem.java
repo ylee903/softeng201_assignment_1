@@ -327,6 +327,12 @@ public class VenueHireSystem {
       MessageCli.SERVICE_NOT_ADDED_BOOKING_NOT_FOUND.printMessage("Floral", bookingReference);
       return;
     }
+
+    // implement the logic to add floral services to the booking
+    booking.addFloralType(floralType);
+    // print success message using ADD_SERVICE_SUCCESSFUL
+    MessageCli.ADD_SERVICE_SUCCESSFUL.printMessage(
+        "Floral (" + floralType.getName() + ")", bookingReference);
   }
 
   public void viewInvoice(String bookingReference) {

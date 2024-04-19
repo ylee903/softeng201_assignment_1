@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import nz.ac.auckland.se281.Types.CateringType;
+import nz.ac.auckland.se281.Types.FloralType;
 
 public class Booking {
   private String bookingReference;
@@ -12,8 +13,7 @@ public class Booking {
   private int attendees;
   private Venue venue; // Change from venueCode to Venue object to store more information
   private Set<CateringType> cateringType = new HashSet<>();
-
-  // private FloralType floralType;
+  private FloralType floralType = null;
 
   public Booking(
       String bookingReference, Venue venue, LocalDate date, String customerEmail, int attendees) {
@@ -26,6 +26,11 @@ public class Booking {
 
   public void addCateringType(CateringType cateringType) {
     this.cateringType.add(cateringType);
+  }
+
+  // implement floralType
+  public void addFloralType(FloralType floralType) {
+    this.floralType = floralType;
   }
 
   // Getters
@@ -51,5 +56,10 @@ public class Booking {
 
   public Set<CateringType> getCateringType() {
     return this.cateringType;
+  }
+
+  // implement getter for floralType
+  public FloralType getFloralType() {
+    return this.floralType;
   }
 }
