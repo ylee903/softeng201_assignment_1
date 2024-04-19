@@ -341,7 +341,52 @@ public class VenueHireSystem {
   }
 
   public void viewInvoice(String bookingReference) {
-    // TODO implement this method
+    // check if there are any bookings with the booking reference, if not print error message using
+    // VIEW_INVOICE_BOOKING_NOT_FOUND and return
+    Booking booking = null;
+    for (Venue venue : venuesActualListOfVenues) {
+      for (Booking b : venue.getBookings()) {
+        if (b.getBookingReference().equals(bookingReference)) {
+          booking = b;
+          break;
+        }
+      }
+    }
+    if (booking == null) {
+      MessageCli.VIEW_INVOICE_BOOKING_NOT_FOUND.printMessage(bookingReference);
+      return;
+    }
+    // use INVOICE_CONTENT_TOP_HALF to print the top half of the invoice
+    MessageCli.INVOICE_CONTENT_TOP_HALF.printMessage(
+        booking.getBookingReference(),
+        booking.getCustomerEmail(),
+        systemDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+        booking.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+        String.valueOf(booking.getAttendees()),
+        booking.getVenue().getVenueName());
+
+    // print the venue fee using INVOICE_CONTENT_VENUE_FEE
+    MessageCli.INVOICE_CONTENT_VENUE_FEE.printMessage(
+        String.valueOf(booking.getVenue().getHireFee()));
+
+    // create a variable to hold all of the catering types in one string, each catering type
+    // seperated by a '/'
+    StringBuilder cateringTypes = new StringBuilder();
+    for (CateringType cateringType : booking.getCateringType()) {
+      cateringTypes.append(cateringType.getName()).append("/");
+    }
+    // remove the last '/' from the string
+    if (cateringTypes.length() > 0) {
+      cateringTypes.deleteCharAt(cateringTypes.length() - 1);
+    }
+    // create a variable to sum all of the costs of catering types.
+    int cateringCost = 0;
+    for (CateringType cateringType : booking.getCateringType()) {
+      cateringCost += cateringType.getCostPerPerson() * booking.getAttendees();
+    }
+
+    MessageCli.INVOICE_CONTENT_CATERING_ENTRY.printMessage(
+        cateringTypes.toString(), String.valueOf(cateringCost));
   }
 }
 
